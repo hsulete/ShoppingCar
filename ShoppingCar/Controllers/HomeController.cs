@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShoppingCar.Models;
 
 namespace ShoppingCar.Controllers
 {
+    
     public class HomeController : Controller
     {
+        private ShoppingCarDBContext db = new ShoppingCarDBContext();
         public ActionResult Index()
         {
-            return View();
+            //將產品放進products
+            IQueryable<Product> ListAll = from m in db.Product
+                                          select m;
+            return View(ListAll);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            IQueryable<Product> ListAll = from m in db.Product
+                                          select m;
+            return View(ListAll);
         }
 
         public ActionResult Contact()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using ShoppingCar.Models;
 
 namespace ShoppingCar.Controllers
@@ -19,18 +20,28 @@ namespace ShoppingCar.Controllers
             return View(ListAll);
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            IQueryable<Product> ListAll = from m in db.Product
-                                          select m;
-            return View(ListAll);
+           return View();
+        }
+        
+        [HttpPost,ActionName("Login")]
+        public ActionResult Login(string UserId, string Pwd)
+        {
+            var member = db.tMember.Where(m=> m.Userid == UserId && m.Pwd == Pwd).FirstOrDefault();
+           
+            if (member == null)
+            {
+
+                ViewBag.Message = "帳密錯誤,登入失敗";
+                return View();
+            }
+           
+            Session["Welcome"] = member.Name + "歡迎光臨";
+            FormsAuthentication.RedirectFromLoginPage(UserId, true);
+            return RedirectToAction("Index","Member");                                    
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
     }
 }

@@ -10,7 +10,7 @@ namespace ShoppingCar.Models
     [Table("tOrder")]
     public partial class tOrder
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(50)]

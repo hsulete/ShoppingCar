@@ -10,7 +10,10 @@ namespace ShoppingCar.Models
     [Table("tMember")]
     public partial class tMember
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //None表示不處理 Identity表示自行增加
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int id { get; set; }
 
        

@@ -42,6 +42,44 @@ namespace ShoppingCar.Controllers
             return RedirectToAction("Index","Member");                                    
         }
 
+        public ActionResult create() 
+        {   
+
+            return View(); 
+        }
+
+        [HttpPost,ActionName("create")]
+        [ValidateAntiForgeryToken]
+        public ActionResult create2(tMember member)
+        {
+            db.tMember.Add(member);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Member");
+        }
+
+        public ActionResult register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult register(tMember member)
+        {
+            
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
+            var Member = db.tMember.Where(m => m.Userid== member.Userid).FirstOrDefault();
+            if (Member == null)
+            {
+                db.tMember.Add(member);
+                db.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            ViewBag.Message = "此帳號已經有人使用";
+            return View();
+        }
 
     }
 }

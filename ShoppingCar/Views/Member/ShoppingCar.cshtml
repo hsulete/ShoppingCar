@@ -61,13 +61,15 @@
            <a href="@Url.Action("DeleteCar")?Id=@item.Id" class="btn btn-danger" onclick="return confirm('確定放棄購買 @item.Name 嗎?')">
                刪除購物車
            </a>
-        </td>
+        </td>        
     </tr>
+    <tr>共 @ViewBag.total 元!</tr>
 }
 
 </table>
+<br/><br /><br /><br /><br />
 
-<form action="@Url.Action("ShoppinrCar")" method="post">
+<form action="@Url.Action("ShoppingCar")" method="post">
     <div class="form-horizontal">
         <h4>填寫訂單之收件人資料</h4>
         <hr />
@@ -94,5 +96,6 @@
                 <input type="submit" value="確認訂購" class="btn btn-default" />
             </div>
         </div>
+     
     </div>
 </form>

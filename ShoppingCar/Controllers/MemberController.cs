@@ -20,9 +20,12 @@ namespace ShoppingCar.Controllers
 
         public ActionResult ShoppingCar()
         {
+            
             string Userid = User.Identity.Name;
             var orderDetail = db.tOrderDetail.Where(m => m.UserId == Userid && m.flsQpproved =="否").ToList();
+           
             return View(orderDetail);
+            
         }
 
         public ActionResult AddCar(string Pid)
@@ -58,8 +61,8 @@ namespace ShoppingCar.Controllers
             return RedirectToAction("ShoppingCar");
         }
 
-        [HttpPost]
-        public ActionResult ShoppinCar(string Receiver,string Email,string Address)
+        [HttpPost,ActionName("ShoppingCar")]
+        public ActionResult ShoppingCar(string Receiver,string Email,string Address)
         {
             string UserId = User.Identity.Name;
             string guid = Guid.NewGuid().ToString();
@@ -72,8 +75,9 @@ namespace ShoppingCar.Controllers
             od.Date = DateTime.Now;
             db.tOrder.Add(od);
             var carList = db.tOrderDetail.Where(m => m.flsQpproved == "否" && m.UserId == UserId).ToList();
+          
 
-            foreach(var car in carList)
+            foreach (var car in carList)
             {
                 car.OrderGuid = guid;
                 car.flsQpproved = "是";
@@ -90,9 +94,11 @@ namespace ShoppingCar.Controllers
 
         }
 
+      
         public ActionResult OrderDetail(string OrderGuid)
         {
             var odDtail = db.tOrderDetail.Where(m => m.OrderGuid == OrderGuid).ToList();
+            
             return View(odDtail);
 
         }

@@ -11,6 +11,7 @@ namespace ShoppingCar.Models
     public partial class tOrderDetail
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int Id { get; set; }
 
         [StringLength(50)]

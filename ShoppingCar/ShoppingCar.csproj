@@ -181,10 +181,12 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\create.cshtml" />
     <Content Include="Views\Home\register.cshtml" />
+    <Content Include="Views\Member\ShoppingCar.cshtml" />
+    <Content Include="Views\Member\OrderList.cshtml" />
+    <Content Include="Views\Member\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Member\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

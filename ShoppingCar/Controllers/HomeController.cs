@@ -13,6 +13,12 @@ namespace ShoppingCar.Controllers
     {
         private ShoppingCarDBContext db = new ShoppingCarDBContext();
         public ActionResult Index()
+        {          
+            
+            return View();
+        }
+
+        public ActionResult product()
         {
             //將產品放進products
             IQueryable<Product> ListAll = from m in db.Product

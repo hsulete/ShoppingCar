@@ -3,23 +3,13 @@
     ViewBag.Title = "產品列表";
 }
 
-<div class="row" style="margin-top:20px;">
-    @foreach(var m in Model)
-            {
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/images/@(m.Img).png" style="width:200px;height:270px;" />
-                        <div class="caption">
-                            <h4>@m.Name</h4>
-                            <p>單價:@m.Price</p>
-                            <p><a href="@Url.Action("AddCar","Member")?PId=@m.PId" 
-                                  class="btn btn-primary">加入購物車</a></p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            }
+<div>
+    
+    <div style=" font-style: italic; font-weight: bold; font-size: 60px; margin-top: 120px;
+      padding: 0 20px; text-shadow: 5px 5px 5px #333; width: 100%; height: 320px; color: #CCC;">
+       Hello ~ @ViewBag.Name <br/>歡迎光臨 !!
+    <br />
+    立德線上商城^_^
+    </div>
 </div>
 

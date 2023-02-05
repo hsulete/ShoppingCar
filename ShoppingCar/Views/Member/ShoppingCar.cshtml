@@ -34,41 +34,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderGuid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.flsQpproved)
-        </td>
-        <td>
-           <a href="@Url.Action("DeleteCar")?Id=@item.Id" class="btn btn-danger" onclick="return confirm('確定放棄購買 @item.Name 嗎?')">
-               刪除購物車
-           </a>
-        </td>        
-    </tr>
-    <tr>共 @ViewBag.total 元!</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.flsQpproved)
+            </td>
+            <td>
+                <a href="@Url.Action("DeleteCar")?Id=@item.Id" class="btn btn-danger" onclick="return confirm('確定放棄購買 @item.Name 嗎?')">
+                    刪除購物車
+                </a>
+            </td>
+        </tr>
+
+    }
 
 </table>
-<br/><br /><br /><br /><br />
-
+<br />
+<div style="text-align:right;width:90%;font-size:15px;color:red;">共 @ViewBag.total 元 !</div>
+<br />
+<br />
+<br />
 <form action="@Url.Action("ShoppingCar")" method="post">
     <div class="form-horizontal">
         <h4>填寫訂單之收件人資料</h4>
@@ -96,6 +100,6 @@
                 <input type="submit" value="確認訂購" class="btn btn-default" />
             </div>
         </div>
-     
+
     </div>
 </form>

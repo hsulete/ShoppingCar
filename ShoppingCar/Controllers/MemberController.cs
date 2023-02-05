@@ -14,15 +14,31 @@ namespace ShoppingCar.Controllers
         // GET: Member
         public ActionResult Index()
         {
+
+            var UserName = db.tMember.Where(m => m.Userid == User.Identity.Name).FirstOrDefault();
+
+            ViewBag.Name = UserName.Name;
+            return View("../Home/index","_LayoutMember");
+        }
+
+        public ActionResult product()
+        {
+            //將產品放進products
             var products = db.Product.OrderBy(x => x.Name).ToList();
-            return View("../Home/Index","_LayoutMember",products);
+            return View("../Home/product", "_LayoutMember",products);
         }
 
         public ActionResult ShoppingCar()
         {
-            
+            int? total = 0;
             string Userid = User.Identity.Name;
             var orderDetail = db.tOrderDetail.Where(m => m.UserId == Userid && m.flsQpproved =="否").ToList();
+            foreach(tOrderDetail i in orderDetail)
+            {
+                int? ii = i.Price;
+                total += ii;
+            }
+            ViewBag.Total = total;
            
             return View(orderDetail);
             
@@ -101,6 +117,11 @@ namespace ShoppingCar.Controllers
             
             return View(odDtail);
 
+        }
+
+        public ActionResult Logout()
+        {         
+            return View("../Home/index");
         }
 
     }
